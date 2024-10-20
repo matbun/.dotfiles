@@ -16,8 +16,8 @@ agent ()
 {
     eval $(ssh-agent)
     # TODO: give your keys
-    ssh-add PATH/TO/YOUR/SSH/KEY_1
-    ssh-add PATH/TO/YOUR/SSH/KEY_2
+    # ssh-add PATH/TO/YOUR/SSH/KEY_1
+    # ssh-add PATH/TO/YOUR/SSH/KEY_2
 }
 
 # Aliases
