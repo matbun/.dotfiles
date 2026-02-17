@@ -22,3 +22,4 @@ agent ()
 
 # Aliases
 alias ll="ls -l"
+alias k="kubectl"
