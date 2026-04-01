@@ -23,3 +23,6 @@ agent ()
 # Aliases
 alias ll="ls -l"
 alias k="kubectl"
+
+# PS1: Directory + exit code indicator (green ok, red fail)
+export PS1='$([[ $? == 0 ]] && echo "\[\e[32m\]o" || echo "\[\e[31m\]x") \[\e[1;34m\]\W\[\e[0m\] \$ '
