@@ -24,6 +24,10 @@ agent ()
 alias ll="ls -l"
 alias k="kubectl"
 
+# kubectl shell completion
+source <(kubectl completion bash)
+complete -o default -F __start_kubectl k
+
 # PS1: Directory + exit code indicator (green ok, red fail)
 export PS1='$([[ $? == 0 ]] && echo "\[\e[32m\]o" || echo "\[\e[31m\]x") \[\e[1;34m\]\W\[\e[0m\] \$ '
 # PS1 with k8s cluster name prepended
