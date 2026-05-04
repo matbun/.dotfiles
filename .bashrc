@@ -39,3 +39,5 @@ export PS1='$([[ $? == 0 ]] && echo "\[\e[32m\]o" || echo "\[\e[31m\]x") \[\e[1;
 # }
 # export PS1='$([[ $? == 0 ]] && echo "\[\e[32m\]o" || echo "\[\e[31m\]x") \[\e[33m\]<$(__kube_ctx)>\[\e[0m\] \[\e[1;34m\]\W\[\e[0m\] \$ '
 
+# Add GOPATH binaries to PATH
+export PATH="$(go env GOPATH)/bin:$PATH"
