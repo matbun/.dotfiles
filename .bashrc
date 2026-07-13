@@ -23,6 +23,7 @@ agent ()
 # Aliases
 alias ll="ls -l"
 alias k="kubectl"
+alias cl="clear"
 
 # kubectl shell completion
 source <(kubectl completion bash)
