@@ -1,0 +1,7 @@
+# tmux plugin pins — the tmux counterpart of nvim's lazy-lock.json.
+# Format:  <name> <git-url> <commit>
+# Restore with:  ./install.sh tmux     (checks out exactly these commits)
+# Update with:   prefix + U, then ./update-tmux-lock.sh
+tpm https://github.com/tmux-plugins/tpm e261deb1b47614eed3400089ce7197dc68acc4eb
+tmux-sensible https://github.com/tmux-plugins/tmux-sensible 25cb91f42d020f675bb0a2ce3fbd3a5d96119efa
+tmux-power https://github.com/wfxr/tmux-power d69c4d7ffc64828ac5ac4b3056dacdd7ef51997f
