@@ -1,0 +1,10 @@
+[user]
+	name = Matteo Bunino
+	email = 48362942+matbun@users.noreply.github.com
+	username = matbun
+
+# Machine-specific settings live here: identity overrides, GPG signing keys,
+# and credential helpers with absolute paths. Gitignored, never committed.
+# A later include wins, so anything set there overrides the block above.
+[include]
+	path = ~/.gitconfig.local
