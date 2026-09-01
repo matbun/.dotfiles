@@ -114,3 +114,19 @@ git commit -am "Bump tmux plugins"
 ```
 
 `./install.sh` checks out exactly the commits in `plugins.lock`.
+
+## Tools worth having
+
+Not tracked here — each installs its own files — but part of the setup:
+
+- **[fzf](https://github.com/junegunn/fzf?tab=readme-ov-file#using-git)** —
+  fuzzy finder. `Ctrl-R` over bash history, `Ctrl-T` for files, `Alt-C` to cd.
+  Install with the git method; it writes `~/.fzf.bash`, which the shell fragment
+  sources automatically when present, so nothing else is needed.
+- **[tpm](https://github.com/tmux-plugins/tpm)** — tmux plugin manager.
+  `install.sh` clones and pins it from `plugins.lock`.
+- **[lazy.nvim](https://github.com/folke/lazy.nvim)** — neovim plugin manager.
+  Bootstrapped by `install.sh` at the version in `lazy-lock.json`.
+
+[tmux cheatsheet](https://tmuxcheatsheet.com/) — reload the config after editing
+with `tmux source-file ~/.tmux.conf`.
