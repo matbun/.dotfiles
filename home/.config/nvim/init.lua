@@ -7,6 +7,11 @@ vim.opt.tabstop = 4
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.clipboard = "unnamedplus"
+vim.opt.termguicolors = true
+vim.cmd.colorscheme("sorbet")
+
+-- netrw file explorer (:30Lex to open on the left)
+vim.g.netrw_winsize = -30
 
 vim.opt.rtp:prepend(vim.fn.stdpath("data") .. "/lazy/lazy.nvim")
 
@@ -24,7 +29,15 @@ require("lazy").setup({
     },
     {
         "nvim-treesitter/nvim-treesitter",
+        branch = "master",
         build = ":TSUpdate",
+        config = function()
+            require("nvim-treesitter.configs").setup({
+                ensure_installed = { "python", "lua", "bash", "json", "yaml", "markdown" },
+                highlight = { enable = true },
+                indent = { enable = true },
+            })
+        end,
     },
     {
         "neovim/nvim-lspconfig",
