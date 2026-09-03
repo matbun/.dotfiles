@@ -40,6 +40,7 @@ alias kcur='kubectl config current-context'
 alias tnew="tmux new -s "
 alias tatt="tmux attach -t "
 alias tls="tmux ls"
+alias tkill="tmux kill-session -t "
 
 # --- prompt ----------------------------------------------------------------
 
