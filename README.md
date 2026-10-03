@@ -1,6 +1,6 @@
 # .dotfiles
 
-Portable config for `tmux`, `vim`, `nvim`, `git` and `bash`, installed by symlink
+Portable config for `tmux`, `vim`, `nvim`, `git`, `bash` and `alacritty`, installed by symlink
 so edits to the live file land straight back in this repo.
 
 ## What's here
@@ -8,6 +8,7 @@ so edits to the live file land straight back in this repo.
 ```
 home/                        mirrors $HOME — home/X is linked to ~/X
 ├── .bashrc.d/matbun.sh      portable shell fragment (sourced, never replaces ~/.bashrc)
+├── .config/alacritty/alacritty.toml  alacritty terminal config
 ├── .config/nvim/init.lua    neovim config
 ├── .config/nvim/lazy-lock.json  pinned plugin versions
 ├── .gitconfig               portable git config
