@@ -1,0 +1,13 @@
+[Unit]
+Description=tmux server (restores sessions via tmux-continuum)
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/tmux start-server
+# Save sessions before the server is killed on logout/shutdown
+ExecStop=%h/.tmux/plugins/tmux-resurrect/scripts/save.sh quiet
+ExecStop=/usr/bin/tmux kill-server
+KillMode=control-group
+
+[Install]
+WantedBy=default.target

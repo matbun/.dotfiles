@@ -9,6 +9,8 @@ so edits to the live file land straight back in this repo.
 home/                        mirrors $HOME — home/X is linked to ~/X
 ├── .bashrc.d/matbun.sh      portable shell fragment (sourced, never replaces ~/.bashrc)
 ├── .config/alacritty/alacritty.toml  alacritty terminal config
+├── .config/autostart/tmux-server.desktop  GNOME login: start tmux.service
+├── .config/systemd/user/tmux.service  tmux server at login (continuum restores into it)
 ├── .config/nvim/init.lua    neovim config
 ├── .config/nvim/lazy-lock.json  pinned plugin versions
 ├── .gitconfig               portable git config

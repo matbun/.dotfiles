@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=tmux server
+Comment=Start the tmux server (and restore sessions) at login
+Exec=systemctl --user start tmux.service
+X-GNOME-Autostart-enabled=true
+NoDisplay=true
