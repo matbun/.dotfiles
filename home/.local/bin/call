@@ -1,0 +1,23 @@
+#!/bin/bash
+# call: switch Bluetooth headphones to call mode (mic on, mSBC codec) and
+# keep the call audio running with a silent background recording.
+# Zoom's call audio fails when Zoom itself is the app that starts it, so
+# run this before joining. "music" stops the recording and switches back.
+pidfile=${XDG_RUNTIME_DIR:-/tmp}/btcall.pid
+card=$(pactl list cards short | awk '$2 ~ /^bluez_card/ {print $2; exit}')
+src=$(pactl list sources short | awk '$2 ~ /^bluez_input/ {print $2; exit}')
+if [ -z "$card" ] || [ -z "$src" ]; then
+    echo "call: no Bluetooth headphones connected" >&2
+    exit 1
+fi
+
+pid=$(cat "$pidfile" 2>/dev/null)
+if [ -n "$pid" ] && [ "$(ps -o comm= -p "$pid")" = pacat ]; then
+    echo "call mode: already on"
+    exit 0
+fi
+
+pactl set-card-profile "$card" headset-head-unit
+setsid pacat --record --device="$src" > /dev/null 2>&1 < /dev/null &
+echo $! > "$pidfile"
+echo "call mode: mic on, lower sound quality"
