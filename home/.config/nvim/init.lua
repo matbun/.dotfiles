@@ -10,9 +10,15 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.termguicolors = true
 vim.cmd.colorscheme("sorbet")
 
--- netrw file explorer (:30Lex to open on the left)
-vim.g.netrw_winsize = -30
-vim.keymap.set("n", "<leader>e", ":Lex<CR>", { desc = "Open file explorer (netrw)" })
+-- nvim-tree replaces netrw (it needs netrw disabled before it loads)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- built-in terminal in a bottom split; <Esc><Esc> returns to normal mode
+vim.keymap.set("n", "<leader>t", "<cmd>botright 15split | terminal<CR>i", { desc = "Open terminal" })
+vim.keymap.set("t", "<Esc><Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
+
+vim.keymap.set("n", "<leader>q", "<cmd>qa<CR>", { desc = "Quit all" })
 
 vim.opt.rtp:prepend(vim.fn.stdpath("data") .. "/lazy/lazy.nvim")
 
@@ -77,8 +83,25 @@ require("lazy").setup({
         "sindrets/diffview.nvim",
         cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewFileHistory" },
         keys = {
-            { "<leader>gd", "<cmd>DiffviewOpen<CR>", desc = "Diffview: open repo diff" },
+            { "<leader>gd", "<cmd>DiffviewOpen -u<CR>", desc = "Diffview: open repo diff (incl. untracked)" },
             { "<leader>gc", "<cmd>DiffviewClose<CR>", desc = "Diffview: close" },
         },
+    },
+    {
+        "nvim-tree/nvim-tree.lua",
+        lazy = false,
+        keys = {
+            { "<leader>e", "<cmd>NvimTreeToggle<CR>", desc = "Toggle file explorer" },
+        },
+        config = function()
+            require("nvim-tree").setup({
+                view = { width = 30 },
+                git = { enable = true, ignore = false },
+                renderer = {
+                    highlight_git = "name",
+                    icons = { show = { file = false, folder = false, folder_arrow = false } },
+                },
+            })
+        end,
     },
 })
