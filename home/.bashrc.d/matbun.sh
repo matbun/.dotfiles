@@ -4,6 +4,23 @@
 # work on any box. Machine-specific things (tokens, absolute PATHs, pyenv/brew
 # init, site completions) belong in ~/.bashrc.local, which is gitignored.
 
+# --- path ------------------------------------------------------------------
+
+# User tools first, so a go or nvim under ~/.local wins over the distro
+# package. Each dir is added once, and only if it exists.
+__path_prepend() {
+    [ -d "$1" ] || return 0
+    case ":$PATH:" in *":$1:"*) ;; *) PATH="$1:$PATH" ;; esac
+}
+__path_prepend "$HOME/.local/nvim/bin"
+__path_prepend "$HOME/.local/go/bin"
+command -v go >/dev/null 2>&1 && __path_prepend "$(go env GOPATH)/bin"
+__path_prepend "$HOME/bin"
+__path_prepend "$HOME/.local/bin"
+export PATH
+
+[ -t 0 ] && export GPG_TTY=$(tty)
+
 # --- functions -------------------------------------------------------------
 
 # Create a directory and cd into it
@@ -31,6 +48,10 @@ agent ()
 
 alias ll="ls -l"
 alias cl=clear
+if command -v nvim >/dev/null 2>&1; then
+    alias vi=nvim
+    alias vim=nvim
+fi
 
 alias k="kubectl"
 alias kctx='kubectl config use-context'
