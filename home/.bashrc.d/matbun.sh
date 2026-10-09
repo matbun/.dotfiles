@@ -59,6 +59,15 @@ fi
 if command -v kubectl >/dev/null 2>&1; then
     source <(kubectl completion bash)
     complete -o default -F __start_kubectl k
+    # kubecolor wraps kubectl and forwards every argument, so kubectl's own
+    # completion function can serve it. bash does not follow aliases for
+    # completion: every alias name needs its own complete line.
+    if command -v kubecolor >/dev/null 2>&1; then
+        alias kubectl=kubecolor
+        alias kc=kubecolor
+        complete -o default -F __start_kubectl kubecolor
+        complete -o default -F __start_kubectl kc
+    fi
 fi
 
 [ -f ~/.fzf.bash ] && . ~/.fzf.bash
