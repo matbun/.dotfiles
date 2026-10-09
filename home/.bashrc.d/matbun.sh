@@ -6,14 +6,12 @@
 
 # --- path ------------------------------------------------------------------
 
-# User tools first, so a go or nvim under ~/.local wins over the distro
-# package. Each dir is added once, and only if it exists.
+# User tools first. Each dir is added once, and only if it exists.
 __path_prepend() {
     [ -d "$1" ] || return 0
     case ":$PATH:" in *":$1:"*) ;; *) PATH="$1:$PATH" ;; esac
 }
 __path_prepend "$HOME/.local/nvim/bin"
-__path_prepend "$HOME/.local/go/bin"
 command -v go >/dev/null 2>&1 && __path_prepend "$(go env GOPATH)/bin"
 __path_prepend "$HOME/bin"
 __path_prepend "$HOME/.local/bin"
@@ -57,6 +55,7 @@ alias k="kubectl"
 alias kctx='kubectl config use-context'
 alias kctxls='kubectl config get-contexts'
 alias kcur='kubectl config current-context'
+alias kns='kubectl config set-context --current --namespace'   # kns <ns>
 
 alias tnew="tmux new -s "
 alias tatt="tmux attach -t "
