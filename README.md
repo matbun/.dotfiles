@@ -19,6 +19,7 @@ home/                        mirrors $HOME — home/X is linked to ~/X
 └── .vimrc                   vim config
 install.sh                   idempotent installer (POSIX sh, no sudo)
 update-tmux-lock.sh          re-pin tmux plugins after an update
+zoom-settings.sh             patch ~/.config/zoomus.conf (not symlinkable)
 ```
 
 The layout has one rule: **`home/X` is symlinked to `~/X`**. That covers plain
@@ -87,6 +88,13 @@ git add -A && git commit -m "Track foo config"
 
 Scan it for tokens and internal hostnames first. If it can't be made
 host-independent, it belongs in `~/.bashrc.local` instead.
+
+## Zoom
+
+`zoom-settings.sh` forces `enableMiniWindow=false`: the floating mini window has
+no toggle in the Linux UI and GNOME can strand it off-screen, losing the call.
+`zoomus.conf` is patched rather than symlinked because Zoom rewrites it on exit
+and it holds host state. Quit Zoom, then run it; `install.sh` also does.
 
 ## Updating plugin pins deliberately
 

@@ -210,6 +210,19 @@ else
     done < "$LOCK"
 fi
 
+# --- zoom -----------------------------------------------------------------
+
+section "Zoom settings"
+if [ ! -f "$HOME/.config/zoomus.conf" ]; then
+    say_skip "~/.config/zoomus.conf (zoom not set up on this host)"
+elif [ "$DRY" -eq 1 ]; then
+    say_info "would run ./zoom-settings.sh"
+elif sh "$REPO/zoom-settings.sh"; then
+    say_link "zoomus.conf patched"
+else
+    say_warn "zoom-settings.sh skipped - quit Zoom and run it by hand"
+fi
+
 # --- summary --------------------------------------------------------------
 
 section "Summary"
