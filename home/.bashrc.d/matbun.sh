@@ -62,6 +62,12 @@ alias tatt="tmux attach -t "
 alias tls="tmux ls"
 alias tkill="tmux kill-session -t "
 
+# --- tmux ------------------------------------------------------------------
+
+# A pane keeps the DISPLAY it was started with, which goes stale after
+# reattaching from a new ssh session. Reload it from tmux before each prompt.
+[ -n "$TMUX" ] && PROMPT_COMMAND='eval "$(tmux show-environment -s DISPLAY 2>/dev/null)"'"${PROMPT_COMMAND:+;$PROMPT_COMMAND}"
+
 # --- prompt ----------------------------------------------------------------
 
 # exit-code marker + kube context + cwd
