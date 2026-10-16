@@ -29,3 +29,7 @@ white   = "#ffffff"
 key = "Return"
 mods = "Shift"
 chars = "\u001B\r"
+
+[terminal.shell]
+program = "bash"
+args = ["-c", "tmux; exec bash"]
